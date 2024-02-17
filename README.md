@@ -85,3 +85,6 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=Sjljki8697797jjsfdj32k9ajdjlj
 POSTGRES_PORT=5432
 POSTGRES_HOST=jobmatch.postgres.database.azure.com
+
+# website url
+https://job-match-delta.vercel.app/
