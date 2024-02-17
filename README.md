@@ -76,3 +76,12 @@ To learn more about Next.js, take a look at the following resources:
 - [FastAPI Documentation](https://fastapi.tiangolo.com/) - learn about FastAPI features and API.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+
+
+
+# DB
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=Sjljki8697797jjsfdj32k9ajdjlj
+POSTGRES_PORT=5432
+POSTGRES_HOST=jobmatch.postgres.database.azure.com
