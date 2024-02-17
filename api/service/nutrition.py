@@ -2,7 +2,10 @@ import os
 from dotenv import load_dotenv
 import requests
 
-from api.service.llm_client import load_image, send_request_to_openai
+from api.service.helper_functions import extract_json_list, json_list_to_csv
+from api.service.image import load_image
+from api.service.llm_client import send_request_to_openai
+from api.service.template_generator import predictive_template
 
 # Load environment variables from .env file
 load_dotenv()
@@ -21,6 +24,7 @@ image_pasta_path = "./images/pasta_one.jpeg"
 
 def get_nutrition_info(query):
     """Send a POST request to Nutritionix API to get nutrition information for a query."""
+
     url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
     headers = {
         'Content-Type': 'application/json',
@@ -41,19 +45,17 @@ def get_nutrition_info(query):
 
 
 
-def get_ingredients_from_image():
-    pass
+def get_ingredients_from_image(image):
+    image_path_or_url = image
+    base64_image = load_image(image_path_or_url)
+    prompt = predictive_template
+    response = send_request_to_openai(base64_image, prompt)
+    ingredients_text = extract_json_list(response)
+    ingredients = get_nutrition_info(json_list_to_csv(ingredients_text))
+    return ingredients
+
 
 # Example usage
 if __name__ == "__main__":
-    image_path_or_url = image_burger_path
-    base64_image = load_image(image_path_or_url)
-    prompt = "This is a picture of the users meal. Given this photo, provide all of the ingredients of this food in csv format. Be careful to include all of the foods that are in the photo, include all individual ingredients you think were used to make the food: "
-    response = send_request_to_openai(base64_image, prompt)
-    print(response)
-
-# Example usage
-# if __name__ == "__main__":
-#     query = "grape"
-#     result = get_nutrition_info(query)
-#     print(result)
+    ingredients = get_ingredients_from_image(image_burger_path)
+    print(ingredients)

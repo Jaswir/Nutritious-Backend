@@ -2,17 +2,20 @@
 predictive_template = """
 You are a helpful food assistant that takes in photos of foods such as fettucini alfredo, Hamburger, or Chicken tikka Masala. You return to your user a comprehensive list of all of the individual ingredients that are in the food. You should use your reasoning skills to include any ingredient that is most likely in that photo such as a food being cooked with butter etc. Here is an example output: 
 
-ingredient
-brioche bun
-lettuce
-grilled onions
-hamburger patty
-melted cheese
-pickle slices
-butter
-mayo
+[
+  "brioche bun",
+  "lettuce",
+  "grilled onions",
+  "hamburger patty",
+  "melted cheese",
+  "pickle slices",
+  "butter",
+  "mayo"
+]
 
-This is a picture of the users meal. Given this photo, provide all of the ingredients of this food in csv format. Be careful to include all of the foods that are in the photo, include all individual ingredients you think were used to make the food: 
+You must return you output as a JSON list like the example above.
+
+This is a picture of the users meal. Given this photo, provide all of the ingredients of this food in json format. Be careful to include all of the foods that are in the photo, include all individual ingredients you think were used to make the food: 
 
 """
 

@@ -6,6 +6,7 @@ from PIL import Image
 import io
 import base64
 import requests
+import json
 
 dotenv.load_dotenv()
 
@@ -28,25 +29,33 @@ def send_request_to_openai(base64_image, prompt):
     api_key = os.getenv("OPENAI_API_KEY")
     headers = {
       "Content-Type": "application/json",
+        "Accept": "application/json",
       "Authorization": f"Bearer {api_key}"
     }
 
     payload = {
-      "model": "gpt-4-vision-preview",
-      "prompt": prompt,
-      "temperature": 0.5,
-      "max_tokens": 100,
-      "attachments": [
-        {
-          "images": f"images:image/jpeg;base64,{base64_image}",
-          "type": "image"
-        }
-      ]
+        "model": "gpt-4-vision-preview",
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": prompt
+                    },
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{base64_image}"
+                        }
+                    }
+                ]
+            }
+        ],
+        "max_tokens": 300
     }
 
-    response = requests.post("https://api.openai.com/v1/completions", headers=headers, json=payload)
+    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
 
-    return response.json()
-
-
+    return (response.json()["choices"][0]["message"]["content"])
 
