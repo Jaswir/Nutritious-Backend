@@ -1,7 +1,14 @@
 from fastapi import FastAPI
+from fastapi.responses import UJSONResponse
 
-app = FastAPI()
+from api.routes.router import api_router
 
-@app.get("/api/python")
-def hello_world():
-    return {"message": "Hello World"}
+app = FastAPI(
+    title="app",
+    docs_url="/api/docs",
+    openapi_url="/api/openapi.json",
+    default_response_class=UJSONResponse,
+)
+
+app.include_router(router=api_router, prefix="/api")
+

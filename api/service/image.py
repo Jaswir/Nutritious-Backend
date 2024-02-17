@@ -7,21 +7,23 @@ import io
 import base64
 import requests
 
-def load_image(image_source):
+import base64
+from io import BytesIO
+from PIL import Image
+from fastapi import FastAPI, File, UploadFile
+
+
+
+async def convert_file_to_base64(upload_file: UploadFile) -> str:
     """
-    Loads an image from a local path or URL and returns a base64-encoded string.
+    Reads the uploaded file and encodes its content to Base64.
 
-    :param image_source: A string, either a path to a local file or a URL to an image.
-    :return: A base64-encoded string of the image.
+    :param upload_file: The uploaded file object.
+    :return: The Base64 encoded string of the file's content.
     """
-    if image_source.startswith('http://') or image_source.startswith('https://'):
-        response = requests.get(image_source)
-        image = Image.open(io.BytesIO(response.content))
-    else:
-        image = Image.open(image_source)
-
-    buffered = io.BytesIO()
-    image.save(buffered, format="JPEG")
-    return base64.b64encode(buffered.getvalue()).decode('utf-8')
-
+    # Read the file's content into memory
+    file_content = await upload_file.read()
+    # Encode the file content to Base64
+    base64_encoded_content = base64.b64encode(file_content).decode('utf-8')
+    return base64_encoded_content
 

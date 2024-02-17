@@ -17,7 +17,7 @@ image_pasta_path = "./images/pasta_one.jpeg"
 
 
 
-def send_request_to_openai(base64_image, prompt):
+async def send_request_with_image_to_openai(base64_image, prompt):
     """
     Sends an API request to OpenAI's GPT model including an image.
 
