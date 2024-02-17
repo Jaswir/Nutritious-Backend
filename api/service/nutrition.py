@@ -45,9 +45,7 @@ def get_nutrition_info(query):
 
 
 
-def get_ingredients_from_image(image):
-    image_path_or_url = image
-    base64_image = load_image(image_path_or_url)
+def get_ingredients_from_image(base64_image):
     prompt = predictive_template
     response = send_request_to_openai(base64_image, prompt)
     ingredients_text = extract_json_list(response)
@@ -57,5 +55,7 @@ def get_ingredients_from_image(image):
 
 # Example usage
 if __name__ == "__main__":
-    ingredients = get_ingredients_from_image(image_burger_path)
+    image_path_or_url = image_burger_path
+    base64_image = load_image(image_path_or_url)
+    ingredients = get_ingredients_from_image(base64_image)
     print(ingredients)
