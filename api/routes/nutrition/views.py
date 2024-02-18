@@ -17,11 +17,10 @@ async def create_upload_file(file: UploadFile = File(...)):
     """
     try:
         base64_image = await convert_file_to_base64(file)
-        return {"ingredients": base64_image}
 
-        # ingredients = await get_ingredients_from_image(base64_image)
-        #
-        # return {"ingredients": ingredients}
+        ingredients = await get_ingredients_from_image(base64_image)
+
+        return {"ingredients": ingredients}
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=500)
 
