@@ -11,7 +11,7 @@ router = APIRouter()
 
 class ImageData(BaseModel):
     image_base64: str  # Expecting a base64-encoded string of the image
-@router.post("/get_ingredients_from_image/")
+@router.post("/get_ingredients_from_image")
 async def create_upload_file(file: UploadFile = File(...)):
     """
     Accepts a file upload and encodes the file to Base64.
