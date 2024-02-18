@@ -31,8 +31,9 @@ async def create_upload_file(image_data: ImageData):
     """
     try:
         # Assuming get_ingredients_from_image is already an async function that accepts a base64 string
-        ingredients = await get_ingredients_from_image(image_data)
-
+        base64_image = image_data.image_base64
+        # Assuming get_ingredients_from_image is an async function that can handle base64 string directly
+        ingredients = await get_ingredients_from_image(base64_image)
         return {"ingredients": ingredients}
     except Exception as e:
         return JSONResponse(content={"message": str(e)}, status_code=500)

@@ -16,13 +16,10 @@ load_dotenv()
 NUTRITION_API_KEY = os.getenv('NUTRITION_API_KEY')
 NUTRITION_API_ID = os.getenv('NUTRITION_API_ID')
 
-
 # example images
 image_burger_path = "./images/burger.jpeg"
 image_curry_path = "./images/curry_one.jpeg"
 image_pasta_path = "./images/pasta_one.jpeg"
-
-
 
 async def get_nutrition_info(query):
     """Send a POST request to Nutritionix API to get nutrition information for a query asynchronously."""
@@ -40,7 +37,6 @@ async def get_nutrition_info(query):
             else:
                 print(f"Error: {response.status}")
                 return await response.text()
-
 
 async def formalize_ingredients(ingredients):
     formatted_ingredients = []

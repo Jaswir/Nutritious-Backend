@@ -9,6 +9,7 @@
     "build": "next build",
     "lint": "next lint"
   },
+
   "dependencies": {
     "@types/node": "20.2.4",
     "@types/react": "18.2.7",
