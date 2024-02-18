@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "fastapi-prod": "uvicorn api.index:app --host 0.0.0.0 --port 8000",
+    "fastapi-prod": "pip install -r requirements.txt && uvicorn api.index:app --host 0.0.0.0 --port 8000",
     "next-prod": "next start",
     "start": "concurrently \"npm run next-prod\" \"npm run fastapi-prod\"",
     "build": "next build",

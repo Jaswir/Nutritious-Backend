@@ -1,16 +1,7 @@
-import os
 
-import dotenv
-import requests
-from PIL import Image
-import io
-import base64
-import requests
 
 import base64
-from io import BytesIO
-from PIL import Image
-from fastapi import FastAPI, File, UploadFile
+from fastapi import  UploadFile
 
 
 

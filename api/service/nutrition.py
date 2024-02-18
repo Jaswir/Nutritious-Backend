@@ -1,11 +1,8 @@
 import asyncio
 import os
-import pprint
 import aiohttp
-import dotenv
 
 from dotenv import load_dotenv
-import requests
 
 from api.data_models.Food import Ingredient
 from api.service.helper_functions import extract_json_list, json_list_to_csv

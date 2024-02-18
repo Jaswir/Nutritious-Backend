@@ -1,8 +1,6 @@
-from fastapi import APIRouter, Form
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import APIRouter
+from fastapi import File, UploadFile
 from fastapi.responses import JSONResponse
-import base64
-import uvicorn
 from pydantic import BaseModel
 
 from api.service.image import convert_file_to_base64
