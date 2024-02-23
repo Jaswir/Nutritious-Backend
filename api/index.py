@@ -11,9 +11,15 @@ app = FastAPI(
     default_response_class=UJSONResponse,
 )
 
+origins = [
+    "http://localhost:5173",
+    "*",
+    "https://nutritious.vercel.app/"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins for demonstration purposes
+    allow_origins=origins,  # Allows all origins for demonstration purposes
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
