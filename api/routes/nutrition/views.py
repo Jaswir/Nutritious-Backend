@@ -17,7 +17,6 @@ async def create_upload_file(file: UploadFile = File(...)):
     """
     try:
         base64_image = await convert_file_to_base64(file)
-
         ingredients = await get_ingredients_from_image(base64_image)
 
         return {"ingredients": ingredients}

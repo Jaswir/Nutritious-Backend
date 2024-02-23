@@ -22,6 +22,7 @@ async def send_request_with_image_to_openai(base64_image, prompt):
     :return: The response from the API as a JSON object.
     """
     api_key = os.getenv("OPENAI_API_KEY")
+    print("api_key: ", api_key)
     headers = {
       "Content-Type": "application/json",
         "Accept": "application/json",

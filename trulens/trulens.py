@@ -2,7 +2,7 @@ import os
 from os import environ
 import json
 
-os.environ["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY_3p5")
+os.environ["OPENAI_API_KEY"] = os.environ.get("OPENAI_API_KEY")
 
 
 # Create openai client
